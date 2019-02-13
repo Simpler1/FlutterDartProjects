@@ -13,7 +13,7 @@ class Validator {
   });
 
   final performPasswordValidation = StreamTransformer<String, String>.fromHandlers(handleData: (password, sink) {
-    final String passwordValidationRule = r'((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%]).{6,10})';
+    final String passwordValidationRule = r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%]).{6,10}$';
     RegExp regExp = new RegExp(passwordValidationRule);
     if (regExp.hasMatch(password)) {
       sink.add(password);
