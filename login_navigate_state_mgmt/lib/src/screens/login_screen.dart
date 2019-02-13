@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         return TextField(
           onChanged: stateMgmtBloc.updatePassword,
-          obscureText: true,
+          // obscureText: true,
           decoration: InputDecoration(
             hintText: 'Enter Password',
             labelText: 'Password',
@@ -69,6 +69,7 @@ class LoginScreen extends StatelessWidget {
     return StreamBuilder(
       stream: stateMgmtBloc.submitValid,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        print('snapshot.data: ${snapshot.data}  snapshot.error: ${snapshot.error}');
         return RaisedButton(
           child: Text('Login and navigate to Second Screen'),
           color: Colors.blue,

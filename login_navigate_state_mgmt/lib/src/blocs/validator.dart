@@ -1,11 +1,9 @@
 import 'dart:async';
 
 class Validator {
-  static String emailValidationRule =
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  static String passwordValidationRule = '((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%]).{6,10})';
-
   final performEmailValidation = StreamTransformer<String, String>.fromHandlers(handleData: (email, sink) {
+    final String emailValidationRule =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regExp = new RegExp(emailValidationRule);
     if (regExp.hasMatch(email)) {
       sink.add(email);
@@ -15,6 +13,7 @@ class Validator {
   });
 
   final performPasswordValidation = StreamTransformer<String, String>.fromHandlers(handleData: (password, sink) {
+    final String passwordValidationRule = '((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%]).{6,10})';
     RegExp regExp = new RegExp(passwordValidationRule);
     if (regExp.hasMatch(password)) {
       sink.add(password);
